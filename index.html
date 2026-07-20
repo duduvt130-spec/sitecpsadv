@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costa, Pereira & Scapin | Advocacia e Consultoria Jurídica</title>
+<meta name="description" content="Assessoria jurídica com experiência, ética e atendimento personalizado. Direito Civil, Empresarial, Trabalhista, Família, Previdenciário e do Consumidor. Fale conosco pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   COSTA, PEREIRA & SCAPIN — DESIGN TOKENS
+========================================================= */
+:root{
+  --navy:#0E2A47;
+  --navy-deep:#091b30;
+  --petrol:#1F496D;
+  --gold:#C8A86A;
+  --gold-light:#DCC08F;
+  --bg-white:#FFFFFF;
+  --bg-soft:#F7F8FA;
+  --text:#1F2937;
+  --text-soft:#5C6672;
+  --text-on-navy:#EAF0F5;
+  --text-on-navy-soft:#B9C7D6;
+
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --container:1180px;
+  --radius:4px;
+  --shadow-sm:0 2px 10px rgba(14,42,71,0.06);
+  --shadow-md:0 12px 40px rgba(14,42,71,0.12);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+body{
+  font-family:var(--sans);
+  color:var(--text);
+  background:var(--bg-white);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea{font-family:inherit;}
+
+:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+}
+
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 32px;
+}
+
+h1,h2,h3{
+  font-family:var(--serif);
+  font-weight:600;
+  color:var(--navy);
+  line-height:1.15;
+  letter-spacing:-0.01em;
+}
+h2{font-size:clamp(30px,4vw,42px);}
+h3{font-size:clamp(20px,2.4vw,24px);}
+p{color:var(--text-soft);}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-family:var(--sans);
+  font-size:12.5px;
+  font-weight:700;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+}
+.eyebrow::after{
+  content:"";
+  display:block;
+  width:38px;
+  height:1px;
+  background:var(--gold);
+}
+.eyebrow.on-navy{color:var(--gold-light);}
+
+.section-head{
+  max-width:640px;
+  margin-bottom:56px;
+}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head.center .eyebrow{justify-content:center;}
+.section-head.center .eyebrow::after{display:none;}
+
+section{position:relative;}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .9s var(--ease), transform .9s var(--ease);
+}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+.reveal-stagger > *{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+}
+.reveal-stagger.is-visible > *{opacity:1;transform:translateY(0);}
+.reveal-stagger.is-visible > *:nth-child(1){transition-delay:.05s;}
+.reveal-stagger.is-visible > *:nth-child(2){transition-delay:.15s;}
+.reveal-stagger.is-visible > *:nth-child(3){transition-delay:.25s;}
+.reveal-stagger.is-visible > *:nth-child(4){transition-delay:.35s;}
+.reveal-stagger.is-visible > *:nth-child(5){transition-delay:.45s;}
+.reveal-stagger.is-visible > *:nth-child(6){transition-delay:.55s;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:16px 30px;
+  font-size:15px;
+  font-weight:700;
+  border-radius:2px;
+  letter-spacing:0.01em;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px) scale(1.015);}
+.btn-gold{
+  background:var(--gold);
+  color:var(--navy-deep);
+  box-shadow:0 10px 24px rgba(200,168,106,0.35);
+}
+.btn-gold:hover{background:var(--gold-light);box-shadow:0 14px 30px rgba(200,168,106,0.45);}
+.btn-outline{
+  background:transparent;
+  color:var(--navy);
+  border:1px solid rgba(14,42,71,0.35);
+}
+.btn-outline:hover{border-color:var(--navy);background:rgba(14,42,71,0.04);}
+.btn-outline.on-navy{color:var(--text-on-navy);border-color:rgba(234,240,245,0.4);}
+.btn-outline.on-navy:hover{border-color:#fff;background:rgba(255,255,255,0.06);}
+.btn-sm{padding:11px 20px;font-size:13.5px;}
+.btn svg{width:18px;height:18px;flex-shrink:0;}
+
+/* ---------- Corner-frame signature motif ---------- */
+.frame{
+  position:relative;
+  padding:14px;
+}
+.frame::before,.frame::after,
+.frame .frame-inner::before,.frame .frame-inner::after{
+  content:"";
+  position:absolute;
+  width:34px;
+  height:34px;
+  border:1px solid var(--gold);
+  z-index:2;
+}
+.frame::before{top:0;left:0;border-right:none;border-bottom:none;}
+.frame::after{bottom:0;right:0;border-left:none;border-top:none;}
+.frame-inner{position:relative;}
+.frame-inner::before{top:0;right:0;border-left:none;border-bottom:none;}
+.frame-inner::after{bottom:0;left:0;border-right:none;border-top:none;}
+.frame-media{
+  overflow:hidden;
+  position:relative;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.site-header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  background:transparent;
+  transition:background .4s var(--ease), box-shadow .4s var(--ease), padding .3s var(--ease);
+  padding:26px 0;
+}
+.site-header.scrolled{
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 20px rgba(14,42,71,0.08);
+  padding:16px 0;
+}
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.brand{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:22px;
+  color:var(--navy);
+  letter-spacing:0.01em;
+  transition:color .3s ease;
+}
+.site-header:not(.scrolled) .brand{color:#fff;}
+.brand span{color:var(--gold);}
+
+.main-nav{display:flex;align-items:center;gap:38px;}
+.main-nav a{
+  font-size:14.5px;
+  font-weight:600;
+  color:var(--navy);
+  position:relative;
+  padding:4px 0;
+  transition:color .3s ease;
+}
+.site-header:not(.scrolled) .main-nav a{color:#fff;}
+.main-nav a::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:-2px;
+  width:0;height:1px;
+  background:var(--gold);
+  transition:width .3s var(--ease);
+}
+.main-nav a:hover::after{width:100%;}
+.header-actions{display:flex;align-items:center;gap:18px;}
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  width:26px;
+  z-index:1200;
+}
+.hamburger span{
+  height:2px;width:100%;
+  background:var(--navy);
+  transition:all .3s var(--ease);
+}
+.site-header:not(.scrolled) .hamburger span{background:#fff;}
+.hamburger.open span{background:var(--navy) !important;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.mobile-nav{
+  position:fixed;
+  inset:0;
+  background:var(--navy);
+  z-index:1100;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  transform:translateY(-100%);
+  transition:transform .5s var(--ease);
+}
+.mobile-nav.open{transform:translateY(0);}
+.mobile-nav a{
+  font-family:var(--serif);
+  font-size:28px;
+  color:#fff;
+  font-weight:500;
+}
+.mobile-nav .btn{margin-top:10px;}
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  background:linear-gradient(160deg,var(--navy) 0%, var(--navy-deep) 100%);
+  position:relative;
+  overflow:hidden;
+  padding-top:110px;
+  padding-bottom:70px;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(200,168,106,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,168,106,0.06) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse at 30% 40%, black, transparent 75%);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:64px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.hero-eyebrow{
+  color:var(--gold-light);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.24em;
+  text-transform:uppercase;
+  margin-bottom:22px;
+  display:block;
+}
+.hero h1{
+  color:#fff;
+  font-size:clamp(36px,4.6vw,58px);
+  font-weight:600;
+  margin-bottom:24px;
+  max-width:620px;
+}
+.hero p.lead{
+  color:var(--text-on-navy-soft);
+  font-size:17.5px;
+  max-width:520px;
+  margin-bottom:38px;
+}
+.hero-actions{display:flex;gap:18px;flex-wrap:wrap;}
+.hero-visual{
+  position:relative;
+}
+.hero-visual .frame::before,.hero-visual .frame::after{border-color:var(--gold);}
+.hero-art{
+  background:linear-gradient(150deg,#16375a, #0c2038);
+  aspect-ratio:4/5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  will-change:transform;
+}
+.hero-art svg{width:78%;height:78%;}
+.hero-scroll-cue{
+  position:absolute;
+  bottom:26px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  color:var(--text-on-navy-soft);
+  font-size:11px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  z-index:3;
+}
+.scroll-line{
+  width:1px;height:36px;
+  background:linear-gradient(var(--gold), transparent);
+  animation:scrollcue 2.2s infinite;
+}
+@keyframes scrollcue{
+  0%{transform:scaleY(0);transform-origin:top;}
+  50%{transform:scaleY(1);transform-origin:top;}
+  50.01%{transform-origin:bottom;}
+  100%{transform:scaleY(0);transform-origin:bottom;}
+}
+
+/* =========================================================
+   SOBRE
+========================================================= */
+.about{
+  padding:130px 0;
+  background:var(--bg-white);
+}
+.about-grid{
+  display:grid;
+  grid-template-columns:0.85fr 1.15fr;
+  gap:80px;
+  align-items:center;
+}
+.about-art{
+  background:var(--bg-soft);
+  aspect-ratio:1/1.05;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.about-art svg{width:70%;height:70%;}
+.about p{font-size:16.5px;margin-bottom:20px;max-width:560px;}
+.about p:last-of-type{margin-bottom:34px;}
+
+/* =========================================================
+   AREAS DE ATUAÇÃO
+========================================================= */
+.areas{padding:130px 0;background:var(--bg-soft);}
+.areas-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+.area-card{
+  background:#fff;
+  padding:38px 32px;
+  border:1px solid rgba(14,42,71,0.07);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.area-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-md);
+  border-color:transparent;
+}
+.area-icon{
+  width:50px;height:50px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--gold);
+  color:var(--petrol);
+  margin-bottom:24px;
+  transition:background .3s ease, color .3s ease;
+}
+.area-card:hover .area-icon{background:var(--navy);color:var(--gold-light);border-color:var(--navy);}
+.area-icon svg{width:24px;height:24px;}
+.area-card h3{margin-bottom:12px;}
+.area-card p{font-size:14.5px;margin-bottom:22px;flex-grow:1;}
+.area-card .link-more{
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--navy);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border-bottom:1px solid transparent;
+  width:fit-content;
+  transition:border-color .3s ease, color .3s ease, gap .3s ease;
+}
+.area-card .link-more:hover{border-color:var(--gold);color:var(--petrol);gap:12px;}
+.area-card .link-more svg{width:14px;height:14px;}
+
+/* =========================================================
+   DIFERENCIAIS (dark)
+========================================================= */
+.diferenciais{
+  padding:130px 0;
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);
+  position:relative;
+}
+.dif-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.dif-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(200,168,106,0.18);
+  padding:34px 28px;
+  transition:background .35s ease, transform .35s var(--ease);
+}
+.dif-card:hover{background:rgba(255,255,255,0.07);transform:translateY(-4px);}
+.dif-icon{
+  width:44px;height:44px;
+  color:var(--gold);
+  margin-bottom:20px;
+}
+.dif-icon svg{width:100%;height:100%;}
+.dif-card h3{color:#fff;font-size:20px;margin-bottom:8px;}
+.dif-card p{color:var(--text-on-navy-soft);font-size:14px;}
+
+/* =========================================================
+   COMO FUNCIONA
+========================================================= */
+.process{padding:130px 0;background:var(--bg-white);}
+.process-track{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+.process-track::before{
+  content:"";
+  position:absolute;
+  top:27px;
+  left:5%;
+  right:5%;
+  height:1px;
+  background:repeating-linear-gradient(90deg, var(--gold) 0 8px, transparent 8px 16px);
+}
+.process-step{
+  position:relative;
+  text-align:center;
+  padding:0 10px;
+}
+.step-num{
+  width:56px;height:56px;
+  margin:0 auto 26px;
+  border-radius:50%;
+  background:#fff;
+  border:1px solid var(--gold);
+  color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:600;
+  position:relative;
+  z-index:2;
+}
+.process-step h3{font-size:18px;margin-bottom:8px;}
+.process-step p{font-size:13.5px;}
+
+/* =========================================================
+   EQUIPE
+========================================================= */
+.team{padding:130px 0;background:var(--bg-soft);}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+}
+.team-card{
+  cursor:pointer;
+  background:transparent;
+  text-align:left;
+}
+.team-photo{
+  aspect-ratio:3/3.6;
+  background:linear-gradient(150deg,var(--petrol),var(--navy-deep));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:22px;
+  position:relative;
+  overflow:hidden;
+  transition:box-shadow .4s ease;
+}
+.team-card:hover .team-photo{box-shadow:var(--shadow-md);}
+.team-initials{
+  font-family:var(--serif);
+  font-size:56px;
+  color:var(--gold-light);
+  letter-spacing:0.05em;
+}
+.team-photo .view-bio{
+  position:absolute;
+  inset:auto 0 0 0;
+  background:rgba(14,42,71,0.92);
+  color:var(--gold-light);
+  text-align:center;
+  padding:14px;
+  font-size:12.5px;
+  font-weight:700;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  transform:translateY(100%);
+  transition:transform .35s var(--ease);
+}
+.team-card:hover .view-bio{transform:translateY(0);}
+.team-card h3{margin-bottom:4px;}
+.team-role{
+  color:var(--gold);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+/* Modal */
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(9,27,48,0.72);
+  backdrop-filter:blur(4px);
+  z-index:1300;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s ease;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{
+  background:#fff;
+  max-width:560px;
+  width:100%;
+  padding:48px;
+  position:relative;
+  transform:translateY(24px);
+  transition:transform .4s var(--ease);
+  max-height:85vh;
+  overflow-y:auto;
+}
+.modal-overlay.open .modal-box{transform:translateY(0);}
+.modal-close{
+  position:absolute;
+  top:20px;right:20px;
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(14,42,71,0.2);
+  color:var(--navy);
+  transition:background .3s ease;
+}
+.modal-close:hover{background:var(--bg-soft);}
+.modal-close svg{width:16px;height:16px;}
+.modal-role{color:var(--gold);font-size:12.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.modal-box h3{font-size:30px;margin-bottom:18px;}
+.modal-box p{font-size:15px;}
+
+/* =========================================================
+   DEPOIMENTOS
+========================================================= */
+.testimonials{
+  padding:130px 0;
+  background:var(--bg-white);
+}
+.t-slider{
+  position:relative;
+  max-width:760px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.t-track{
+  display:flex;
+  transition:transform .6s var(--ease);
+}
+.t-slide{
+  min-width:100%;
+  padding:0 8px;
+}
+.t-card{
+  background:var(--bg-soft);
+  border-left:2px solid var(--gold);
+  padding:46px 48px;
+  text-align:center;
+}
+.t-stars{color:var(--gold);font-size:16px;letter-spacing:3px;margin-bottom:22px;}
+.t-quote{
+  font-family:var(--serif);
+  font-size:22px;
+  font-style:italic;
+  color:var(--navy);
+  line-height:1.5;
+  margin-bottom:26px;
+}
+.t-name{font-weight:700;font-size:14.5px;color:var(--navy);}
+.t-city{color:var(--text-soft);font-size:13px;}
+.t-controls{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  margin-top:38px;
+}
+.t-arrow{
+  width:42px;height:42px;
+  border:1px solid rgba(14,42,71,0.2);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s ease, border-color .3s ease;
+}
+.t-arrow:hover{background:var(--navy);border-color:var(--navy);color:#fff;}
+.t-arrow svg{width:16px;height:16px;}
+.t-dots{display:flex;gap:9px;}
+.t-dot{width:7px;height:7px;border-radius:50%;background:rgba(14,42,71,0.2);transition:background .3s ease, transform .3s ease;}
+.t-dot.active{background:var(--gold);transform:scale(1.3);}
+
+/* =========================================================
+   FAQ
+========================================================= */
+.faq{padding:130px 0;background:var(--bg-soft);}
+.faq-list{max-width:760px;margin:0 auto;}
+.faq-item{
+  border-bottom:1px solid rgba(14,42,71,0.12);
+}
+.faq-q{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:26px 4px;
+  text-align:left;
+  font-family:var(--serif);
+  font-size:19px;
+  font-weight:600;
+  color:var(--navy);
+}
+.faq-q .plus{
+  width:22px;height:22px;
+  flex-shrink:0;
+  position:relative;
+}
+.faq-q .plus::before,.faq-q .plus::after{
+  content:"";
+  position:absolute;
+  background:var(--gold);
+  transition:transform .35s var(--ease);
+}
+.faq-q .plus::before{top:50%;left:0;width:100%;height:1px;transform:translateY(-50%);}
+.faq-q .plus::after{left:50%;top:0;height:100%;width:1px;transform:translateX(-50%);}
+.faq-item.open .plus::after{transform:translateX(-50%) rotate(90deg);opacity:0;}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .45s var(--ease);
+}
+.faq-a p{padding:0 4px 28px;font-size:15px;max-width:640px;}
+.whatsapp-inline{
+  margin-top:44px;
+  text-align:center;
+}
+
+/* =========================================================
+   CTA FINAL
+========================================================= */
+.cta-final{
+  padding:140px 0;
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cta-final::before{
+  content:"";
+  position:absolute;
+  width:640px;height:640px;
+  border:1px solid rgba(200,168,106,0.15);
+  border-radius:50%;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+}
+.cta-final h2{color:#fff;margin-bottom:18px;position:relative;z-index:2;}
+.cta-final p{color:var(--text-on-navy-soft);max-width:520px;margin:0 auto 40px;position:relative;z-index:2;font-size:16.5px;}
+.cta-final .btn{position:relative;z-index:2;}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.site-footer{
+  background:#081724;
+  color:var(--text-on-navy-soft);
+  padding:90px 0 30px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr 1.1fr;
+  gap:48px;
+  padding-bottom:60px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.footer-brand{font-family:var(--serif);font-size:24px;color:#fff;margin-bottom:16px;}
+.footer-brand span{color:var(--gold);}
+.footer-col h4{
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+.footer-col p, .footer-col a{
+  font-size:14px;
+  color:var(--text-on-navy-soft);
+  display:block;
+  margin-bottom:12px;
+  transition:color .3s ease;
+  line-height:1.6;
+}
+.footer-col a:hover{color:var(--gold-light);}
+.footer-map{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  aspect-ratio:16/10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:14px;
+}
+.footer-map svg{width:60%;height:60%;color:var(--gold);}
+.footer-social{display:flex;gap:12px;margin-top:6px;}
+.footer-social a{
+  width:36px;height:36px;
+  border:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:0;
+}
+.footer-social svg{width:16px;height:16px;}
+.footer-bottom{
+  padding-top:30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+  font-size:12.5px;
+  color:rgba(233,239,245,0.45);
+}
+.footer-bottom-links{display:flex;gap:26px;}
+.footer-bottom-links a:hover{color:var(--gold-light);}
+
+/* =========================================================
+   WHATSAPP FLOATING BUTTON
+========================================================= */
+.wa-float{
+  position:fixed;
+  bottom:26px;right:26px;
+  width:60px;height:60px;
+  background:#1FA855;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px rgba(31,168,85,0.45);
+  z-index:900;
+  transition:transform .3s var(--ease);
+}
+.wa-float:hover{transform:scale(1.08);}
+.wa-float svg{width:30px;height:30px;color:#fff;}
+.wa-float::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:2px solid #1FA855;
+  animation:wapulse 2.4s infinite;
+}
+@keyframes wapulse{
+  0%{transform:scale(1);opacity:0.7;}
+  100%{transform:scale(1.7);opacity:0;}
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 980px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{order:-1;max-width:380px;margin:0 auto;}
+  .hero h1{max-width:100%;}
+  .about-grid{grid-template-columns:1fr;gap:50px;}
+  .about-art{order:-1;max-width:420px;margin:0 auto;width:100%;}
+  .areas-grid{grid-template-columns:repeat(2,1fr);}
+  .dif-grid{grid-template-columns:repeat(2,1fr);}
+  .process-track{grid-template-columns:repeat(5,1fr);gap:4px;}
+  .team-grid{grid-template-columns:repeat(3,1fr);gap:22px;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px;}
+  .main-nav{display:none;}
+}
+
+@media (max-width: 760px){
+  .container{padding:0 22px;}
+  .hamburger{display:flex;}
+  section{scroll-margin-top:80px;}
+  .hero{padding-top:130px;padding-bottom:90px;min-height:auto;}
+  .hero h1{font-size:34px;}
+  .hero-actions{flex-direction:column;align-items:stretch;}
+  .hero-actions .btn{width:100%;}
+  .about,.areas,.diferenciais,.process,.team,.testimonials,.faq,.cta-final{padding:80px 0;}
+  .areas-grid{grid-template-columns:1fr;}
+  .dif-grid{grid-template-columns:1fr;}
+  .process-track{grid-template-columns:1fr;gap:36px;}
+  .process-track::before{display:none;}
+  .team-grid{grid-template-columns:1fr 1fr;gap:20px;}
+  .footer-grid{grid-template-columns:1fr;gap:36px;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+  .t-card{padding:34px 26px;}
+  .t-quote{font-size:19px;}
+  .section-head{margin-bottom:40px;}
+  .wa-float{width:54px;height:54px;bottom:18px;right:18px;}
+}
+
+@media (max-width: 460px){
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .modal-box{padding:32px 24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-row">
+    <a href="#home" class="brand">Costa, Pereira <span>&</span> Scapin</a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#home">Home</a>
+      <a href="#escritorio">O Escritório</a>
+      <a href="#areas">Áreas de Atuação</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#" class="btn btn-gold btn-sm wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin." style="display:none" id="headerWaBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+        WhatsApp
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Header WhatsApp button visible only past hero via JS class toggle -->
+<style>.site-header.scrolled #headerWaBtn{display:inline-flex !important;}</style>
+
+<!-- ============ MOBILE NAV ============ -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Navegação móvel">
+  <a href="#home">Home</a>
+  <a href="#escritorio">O Escritório</a>
+  <a href="#areas">Áreas de Atuação</a>
+  <a href="#equipe">Equipe</a>
+  <a href="#diferenciais">Diferenciais</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contato">Contato</a>
+  <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin.">Falar pelo WhatsApp</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="hero-eyebrow">Advocacia e Consultoria Jurídica</span>
+      <h1>Assessoria jurídica com experiência, ética e atendimento personalizado.</h1>
+      <p class="lead">Atendimento jurídico para pessoas físicas e empresas, com soluções estratégicas, comunicação transparente e acompanhamento próximo em todas as etapas.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin.">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+          Fale conosco pelo WhatsApp
+        </a>
+        <a href="#escritorio" class="btn btn-outline on-navy">Conheça o escritório</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="frame">
+        <div class="frame-inner">
+          <div class="hero-art" id="heroArt">
+            <svg viewBox="0 0 200 240" fill="none" stroke="#C8A86A" stroke-width="1">
+              <line x1="20" y1="220" x2="180" y2="220"/>
+              <line x1="30" y1="220" x2="30" y2="90"/>
+              <line x1="60" y1="220" x2="60" y2="90"/>
+              <line x1="90" y1="220" x2="90" y2="90"/>
+              <line x1="110" y1="220" x2="110" y2="90"/>
+              <line x1="140" y1="220" x2="140" y2="90"/>
+              <line x1="170" y1="220" x2="170" y2="90"/>
+              <polygon points="20,90 180,90 100,25" stroke-width="1.1"/>
+              <line x1="15" y1="94" x2="185" y2="94" stroke-width="1.3"/>
+              <circle cx="100" cy="60" r="5" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-cue"><span>Role a página</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ============ SOBRE O ESCRITÓRIO ============ -->
+<section class="about" id="escritorio">
+  <div class="container about-grid">
+    <div class="about-art reveal">
+      <svg viewBox="0 0 200 200" fill="none" stroke="#1F496D" stroke-width="1">
+        <rect x="40" y="30" width="120" height="150" stroke-width="1.1"/>
+        <line x1="40" y1="55" x2="160" y2="55"/>
+        <line x1="55" y1="70" x2="145" y2="70"/>
+        <line x1="55" y1="85" x2="145" y2="85"/>
+        <line x1="55" y1="100" x2="120" y2="100"/>
+        <line x1="55" y1="125" x2="145" y2="125"/>
+        <line x1="55" y1="140" x2="145" y2="140"/>
+        <line x1="55" y1="155" x2="110" y2="155"/>
+        <circle cx="100" cy="20" r="10" stroke="#C8A86A"/>
+      </svg>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">O Escritório</span>
+      <h2>Compromisso com a excelência jurídica.</h2>
+      <p>Acreditamos que um bom atendimento jurídico começa pela escuta. Cada cliente possui uma história, necessidades específicas e objetivos próprios. Atuamos com responsabilidade, clareza e rigor técnico, buscando soluções compatíveis com a legislação e com as particularidades de cada caso.</p>
+      <p>Nosso compromisso é construir relações de confiança por meio de uma atuação ética, comunicação transparente e acompanhamento contínuo.</p>
+      <a href="#" class="btn btn-outline wa-link" data-msg="Olá! Gostaria de agendar uma conversa com o escritório.">Agende uma conversa</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÁREAS DE ATUAÇÃO ============ -->
+<section class="areas" id="areas">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Áreas de Atuação</span>
+      <h2>Soluções jurídicas para cada necessidade.</h2>
+    </div>
+    <div class="areas-grid reveal-stagger">
+
+      <div class="area-card">
+        <div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M15 3v4h4"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg></div>
+        <h3>Direito Civil</h3>
+        <p>Orientação em contratos, responsabilidade civil e questões patrimoniais, com atenção aos detalhes que fazem diferença no resultado.</p>
+        <a href="#" class="link-more wa-link" data-msg="Olá! Gostaria de saber mais sobre Direito Civil.">Saiba mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></svg></div>
+        <h3>Direito Empresarial</h3>
+        <p>Suporte jurídico estratégico para constituição, contratos e operações societárias, alinhado aos objetivos do seu negócio.</p>
+        <a href="#" class="link-more wa-link" data-msg="Olá! Gostaria de saber mais sobre Direito Empresarial.">Saiba mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg></div>
+        <h3>Direito Trabalhista</h3>
+        <p>Assessoria preventiva e contenciosa nas relações de trabalho, para empregadores e empregados.</p>
+        <a href="#" class="link-more wa-link" data-msg="Olá! Gostaria de saber mais sobre Direito Trabalhista.">Saiba mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11 12 4l8 7"/><path d="M6 10v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9"/><path d="M10 20v-5h4v5"/></svg></div>
+        <h3>Direito de Família</h3>
+        <p>Condução cuidadosa de questões sensíveis, com discrição, empatia e foco na melhor solução para todas as partes.</p>
+        <a href="#" class="link-more wa-link" data-msg="Olá! Gostaria de saber mais sobre Direito de Família.">Saiba mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Direito Previdenciário</h3>
+        <p>Análise técnica de benefícios e planejamento previdenciário, com acompanhamento em todas as instâncias.</p>
+        <a href="#" class="link-more wa-link" data-msg="Olá! Gostaria de saber mais sobre Direito Previdenciário.">Saiba mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 4h3l2.4 12.2a1.5 1.5 0 0 0 1.5 1.3h9.4a1.5 1.5 0 0 0 1.5-1.2L21 8H6"/></svg></div>
+        <h3>Direito do Consumidor</h3>
+        <p>Defesa de direitos em relações de consumo, com atuação clara e objetiva.</p>
+        <a href="#" class="link-more wa-link" data-msg="Olá! Gostaria de saber mais sobre Direito do Consumidor.">Saiba mais <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+    </div>
+    <div class="whatsapp-inline reveal">
+      <a href="#" class="btn btn-outline wa-link" data-msg="Olá! Gostaria de saber mais sobre as áreas de atuação do escritório.">Falar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAIS ============ -->
+<section class="diferenciais" id="diferenciais">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow on-navy">Diferenciais</span>
+      <h2 style="color:#fff;">Por que clientes confiam em nosso trabalho.</h2>
+    </div>
+    <div class="dif-grid reveal-stagger">
+      <div class="dif-card">
+        <div class="dif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9.5"/></svg></div>
+        <h3>Atendimento personalizado</h3>
+        <p>Cada caso recebe atenção individual, com escuta atenta às particularidades da sua situação.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Transparência</h3>
+        <p>Comunicação honesta sobre prazos, custos e possibilidades em cada etapa do processo.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+        <h3>Estratégia jurídica</h3>
+        <p>Planejamento técnico e criterioso, pensado para os objetivos específicos de cada cliente.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h16v11H8l-4 4V5Z"/></svg></div>
+        <h3>Comunicação clara</h3>
+        <p>Explicações objetivas, sem juridiquês desnecessário, para que você entenda cada decisão.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg></div>
+        <h3>Ética profissional</h3>
+        <p>Atuação rigorosa em conformidade com o Código de Ética e Disciplina da OAB.</p>
+      </div>
+      <div class="dif-card">
+        <div class="dif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>Atendimento presencial e online</h3>
+        <p>Flexibilidade para reuniões presenciais ou por videochamada, conforme sua conveniência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="process" id="processo">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Como Funciona</span>
+      <h2>Um caminho claro, do primeiro contato ao acompanhamento.</h2>
+    </div>
+    <div class="process-track reveal-stagger">
+      <div class="process-step"><div class="step-num">1</div><h3>Contato</h3><p>Fale com a equipe pelo WhatsApp.</p></div>
+      <div class="process-step"><div class="step-num">2</div><h3>Análise inicial</h3><p>Avaliamos os detalhes do seu caso.</p></div>
+      <div class="process-step"><div class="step-num">3</div><h3>Reunião</h3><p>Conversa presencial ou online.</p></div>
+      <div class="process-step"><div class="step-num">4</div><h3>Estratégia</h3><p>Definimos o melhor caminho jurídico.</p></div>
+      <div class="process-step"><div class="step-num">5</div><h3>Acompanhamento</h3><p>Suporte contínuo em todas as etapas.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPE ============ -->
+<section class="team" id="equipe">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Equipe</span>
+      <h2>Sócios à frente de cada atendimento.</h2>
+    </div>
+    <div class="team-grid reveal-stagger">
+
+      <button class="team-card" data-name="Dra. Marina Costa" data-role="Sócia Fundadora · Direito Empresarial e Civil"
+        data-bio="Fundadora do escritório, atua há mais de quinze anos em Direito Empresarial e Civil. Conduz cada caso com rigor técnico e atenção às particularidades de empresas de pequeno e médio porte, construindo relações de confiança de longo prazo com seus clientes.">
+        <div class="team-photo"><span class="team-initials">MC</span><span class="view-bio">Ver biografia</span></div>
+        <h3>Dra. Marina Costa</h3>
+        <span class="team-role">Sócia Fundadora</span>
+      </button>
+
+      <button class="team-card" data-name="Dr. Rafael Pereira" data-role="Sócio · Direito Trabalhista e Previdenciário"
+        data-bio="Especialista em Direito Trabalhista e Previdenciário, com atuação preventiva e contenciosa. Acredita que a clareza na comunicação é o que transforma um processo complexo em uma experiência tranquila para o cliente.">
+        <div class="team-photo"><span class="team-initials">RP</span><span class="view-bio">Ver biografia</span></div>
+        <h3>Dr. Rafael Pereira</h3>
+        <span class="team-role">Sócio</span>
+      </button>
+
+      <button class="team-card" data-name="Dra. Beatriz Scapin" data-role="Sócia · Direito de Família e Consumidor"
+        data-bio="Conduz questões de Direito de Família e do Consumidor com discrição e empatia. Sua atuação é reconhecida pela escuta cuidadosa e pela busca por soluções equilibradas, mesmo nos casos mais sensíveis.">
+        <div class="team-photo"><span class="team-initials">BS</span><span class="view-bio">Ver biografia</span></div>
+        <h3>Dra. Beatriz Scapin</h3>
+        <span class="team-role">Sócia</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- Team bio modal -->
+<div class="modal-overlay" id="teamModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+    <span class="modal-role" id="modalRole"></span>
+    <h3 id="modalName"></h3>
+    <p id="modalBio"></p>
+  </div>
+</div>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="testimonials" id="depoimentos">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>A confiança de quem já foi atendido.</h2>
+    </div>
+    <div class="t-slider reveal">
+      <div class="t-track" id="tTrack">
+        <div class="t-slide">
+          <div class="t-card">
+            <div class="t-stars">★★★★★</div>
+            <p class="t-quote">"Fui muito bem orientado em cada etapa do processo. Profissionalismo e transparência do início ao fim."</p>
+            <div class="t-name">Eduardo M.</div>
+            <div class="t-city">Porto Alegre, RS</div>
+          </div>
+        </div>
+        <div class="t-slide">
+          <div class="t-card">
+            <div class="t-stars">★★★★★</div>
+            <p class="t-quote">"Equipe atenciosa e clara em todas as explicações. Me senti seguro durante todo o processo."</p>
+            <div class="t-name">Camila R.</div>
+            <div class="t-city">Santa Maria, RS</div>
+          </div>
+        </div>
+        <div class="t-slide">
+          <div class="t-card">
+            <div class="t-stars">★★★★★</div>
+            <p class="t-quote">"Atendimento diferenciado, sempre disponíveis para esclarecer dúvidas com paciência e clareza."</p>
+            <div class="t-name">João P.</div>
+            <div class="t-city">Caxias do Sul, RS</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-controls">
+        <button class="t-arrow" id="tPrev" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="t-dots" id="tDots"></div>
+        <button class="t-arrow" id="tNext" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="whatsapp-inline reveal">
+      <a href="#" class="btn btn-outline wa-link" data-msg="Olá! Vi os depoimentos no site e gostaria de conversar.">Falar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Perguntas Frequentes</span>
+      <h2>Tire suas dúvidas antes de agendar.</h2>
+    </div>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q"><span>Como agendar atendimento?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Basta entrar em contato pelo WhatsApp ou preencher o formulário de contato. Nossa equipe retornará para agendar um horário conforme sua disponibilidade.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>O atendimento pode ser online?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Sim. Realizamos atendimentos presenciais e por videochamada, conforme a preferência e a necessidade de cada cliente.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Quais documentos preciso apresentar?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Os documentos variam conforme o caso. Na primeira conversa, orientamos exatamente o que será necessário para dar andamento ao seu atendimento.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Como funciona a primeira consulta?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>A primeira conversa é dedicada a entender sua situação, esclarecer dúvidas iniciais e apresentar possíveis caminhos jurídicos, com total transparência.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>As informações são confidenciais?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Sim. Todas as informações compartilhadas são tratadas com sigilo profissional, em conformidade com o Código de Ética da OAB.</p></div>
+      </div>
+
+    </div>
+    <div class="whatsapp-inline reveal">
+      <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Tenho uma dúvida que não vi respondida no site.">Falar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final" id="contato">
+  <div class="container reveal">
+    <h2>Precisa de orientação jurídica?</h2>
+    <p>Entre em contato e converse diretamente com nossa equipe.</p>
+    <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Preciso de orientação jurídica e gostaria de falar com a equipe.">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+      Falar pelo WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">Costa, Pereira <span>&</span> Scapin</div>
+        <p>Advocacia e Consultoria Jurídica, com atendimento ético, transparente e personalizado para pessoas físicas e empresas.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="11" x2="8" y2="17"/><line x1="8" y1="7.5" x2="8" y2="7.51"/><path d="M12 17v-3.5a2.5 2.5 0 0 1 5 0V17"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>Rua Exemplo, 123 – Centro<br>Sua Cidade – UF</p>
+        <a href="#" class="wa-link" data-msg="Olá! Encontrei o número pelo site.">(00) 00000-0000</a>
+        <a href="mailto:contato@costapereirascapin.adv.br">contato@costapereirascapin.adv.br</a>
+      </div>
+      <div class="footer-col">
+        <h4>Links Rápidos</h4>
+        <a href="#escritorio">O Escritório</a>
+        <a href="#areas">Áreas de Atuação</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Localização</h4>
+        <div class="footer-map">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M50 12c-13 0-23 10-23 23 0 17 23 40 23 40s23-23 23-40c0-13-10-23-23-23Z"/><circle cx="50" cy="35" r="8"/></svg>
+        </div>
+        <p style="font-size:12.5px;">OAB/RS 000.000</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Costa, Pereira & Scapin Advocacia e Consultoria Jurídica. Todos os direitos reservados.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOAT ============ -->
+<a href="#" class="wa-float wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin." aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+</a>
+
+<script>
+(function(){
+  // ---------- CONFIG ----------
+  // Substitua pelo número real do escritório no formato DDI+DDD+numero, apenas dígitos.
+  var WHATSAPP_NUMBER = "5500000000000";
+
+  // ---------- WhatsApp links ----------
+  document.querySelectorAll(".wa-link").forEach(function(link){
+    var msg = link.getAttribute("data-msg") || "Olá! Gostaria de falar com a equipe.";
+    link.setAttribute("href", "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg));
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener");
+  });
+
+  // ---------- Header scroll state ----------
+  var header = document.getElementById("siteHeader");
+  function onScroll(){
+    if(window.scrollY > 60){ header.classList.add("scrolled"); }
+    else{ header.classList.remove("scrolled"); }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  // ---------- Hero parallax (subtle) ----------
+  var heroArt = document.getElementById("heroArt");
+  window.addEventListener("scroll", function(){
+    if(!heroArt) return;
+    var y = window.scrollY;
+    if(y < 900){
+      heroArt.style.transform = "translateY(" + (y * 0.08) + "px)";
+    }
+  }, {passive:true});
+
+  // ---------- Mobile nav ----------
+  var hamburger = document.getElementById("hamburger");
+  var mobileNav = document.getElementById("mobileNav");
+  hamburger.addEventListener("click", function(){
+    var open = mobileNav.classList.toggle("open");
+    hamburger.classList.toggle("open", open);
+    hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  mobileNav.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){
+      mobileNav.classList.remove("open");
+      hamburger.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+  });
+
+  // ---------- Scroll reveal ----------
+  var revealEls = document.querySelectorAll(".reveal, .reveal-stagger");
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // ---------- FAQ accordion ----------
+  document.querySelectorAll(".faq-item").forEach(function(item){
+    var q = item.querySelector(".faq-q");
+    var a = item.querySelector(".faq-a");
+    q.addEventListener("click", function(){
+      var isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(function(openItem){
+        if(openItem !== item){
+          openItem.classList.remove("open");
+          openItem.querySelector(".faq-a").style.maxHeight = null;
+          openItem.querySelector(".faq-q").setAttribute("aria-expanded","false");
+        }
+      });
+      if(isOpen){
+        item.classList.remove("open");
+        a.style.maxHeight = null;
+        q.setAttribute("aria-expanded","false");
+      } else {
+        item.classList.add("open");
+        a.style.maxHeight = a.scrollHeight + "px";
+        q.setAttribute("aria-expanded","true");
+      }
+    });
+  });
+
+  // ---------- Team modal ----------
+  var modal = document.getElementById("teamModal");
+  var modalName = document.getElementById("modalName");
+  var modalRole = document.getElementById("modalRole");
+  var modalBio = document.getElementById("modalBio");
+  document.querySelectorAll(".team-card").forEach(function(card){
+    card.addEventListener("click", function(){
+      modalName.textContent = card.getAttribute("data-name");
+      modalRole.textContent = card.getAttribute("data-role");
+      modalBio.textContent = card.getAttribute("data-bio");
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+  });
+  function closeModal(){
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  modal.addEventListener("click", function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeModal(); });
+
+  // ---------- Testimonials slider ----------
+  var track = document.getElementById("tTrack");
+  var slides = track.children;
+  var dotsWrap = document.getElementById("tDots");
+  var current = 0;
+  for(var i=0;i<slides.length;i++){
+    var dot = document.createElement("div");
+    dot.className = "t-dot" + (i===0 ? " active" : "");
+    (function(idx){ dot.addEventListener("click", function(){ goTo(idx); }); })(i);
+    dotsWrap.appendChild(dot);
+  }
+  var dots = dotsWrap.children;
+  function goTo(idx){
+    current = (idx + slides.length) % slides.length;
+    track.style.transform = "translateX(-" + (current*100) + "%)";
+    for(var d=0; d<dots.length; d++){ dots[d].classList.toggle("active", d===current); }
+  }
+  document.getElementById("tPrev").addEventListener("click", function(){ goTo(current-1); });
+  document.getElementById("tNext").addEventListener("click", function(){ goTo(current+1); });
+  var autoSlide = setInterval(function(){ goTo(current+1); }, 6500);
+  document.querySelector(".t-slider").addEventListener("mouseenter", function(){ clearInterval(autoSlide); });
+
+})();
+</script>
+
+</body>
+</html>
