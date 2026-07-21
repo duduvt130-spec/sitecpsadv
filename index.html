@@ -206,7 +206,7 @@ section{position:relative;}
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:24px;
+  gap:20px;
 }
 .brand{
   font-family:var(--serif);
@@ -214,18 +214,20 @@ section{position:relative;}
   font-size:22px;
   color:var(--navy);
   letter-spacing:0.01em;
+  white-space:nowrap;
   transition:color .3s ease;
 }
 .site-header:not(.scrolled) .brand{color:#fff;}
 .brand span{color:var(--gold);}
 
-.main-nav{display:flex;align-items:center;gap:38px;}
+.main-nav{display:flex;align-items:center;gap:clamp(14px,1.5vw,26px);}
 .main-nav a{
-  font-size:14.5px;
+  font-size:14px;
   font-weight:600;
   color:var(--navy);
   position:relative;
   padding:4px 0;
+  white-space:nowrap;
   transition:color .3s ease;
 }
 .site-header:not(.scrolled) .main-nav a{color:#fff;}
@@ -238,7 +240,19 @@ section{position:relative;}
   transition:width .3s var(--ease);
 }
 .main-nav a:hover::after{width:100%;}
-.header-actions{display:flex;align-items:center;gap:18px;}
+.header-actions{display:flex;align-items:center;gap:14px;}
+.header-ig{
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(14,42,71,0.25);
+  border-radius:50%;
+  color:var(--navy);
+  transition:background .3s ease, border-color .3s ease, color .3s ease;
+}
+.header-ig svg{width:18px;height:18px;}
+.header-ig:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-deep);}
+.site-header:not(.scrolled) .header-ig{color:#fff;border-color:rgba(255,255,255,0.4);}
+.site-header:not(.scrolled) .header-ig:hover{background:rgba(255,255,255,0.1);border-color:#fff;}
 .hamburger{
   display:none;
   flex-direction:column;
@@ -511,6 +525,10 @@ section{position:relative;}
   font-family:var(--serif);
   font-size:22px;
   font-weight:600;
+  line-height:1;
+  /* algarismos alinhados (lining figures) para centralização vertical correta */
+  font-feature-settings:"lnum" 1, "tnum" 1;
+  font-variant-numeric:lining-nums tabular-nums;
   position:relative;
   z-index:2;
 }
@@ -524,153 +542,56 @@ section{position:relative;}
 .team-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:40px;
+  gap:32px;
+  max-width:940px;
+  margin:0 auto;
 }
 .team-card{
-  cursor:pointer;
-  background:transparent;
-  text-align:left;
-}
-.team-photo{
-  aspect-ratio:3/3.6;
-  background:linear-gradient(150deg,var(--petrol),var(--navy-deep));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:22px;
-  position:relative;
-  overflow:hidden;
-  transition:box-shadow .4s ease;
-}
-.team-card:hover .team-photo{box-shadow:var(--shadow-md);}
-.team-initials{
-  font-family:var(--serif);
-  font-size:56px;
-  color:var(--gold-light);
-  letter-spacing:0.05em;
-}
-.team-photo .view-bio{
-  position:absolute;
-  inset:auto 0 0 0;
-  background:rgba(14,42,71,0.92);
-  color:var(--gold-light);
+  background:#fff;
+  border:1px solid rgba(14,42,71,0.08);
+  padding:44px 32px;
   text-align:center;
-  padding:14px;
-  font-size:12.5px;
-  font-weight:700;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  transform:translateY(100%);
-  transition:transform .35s var(--ease);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
 }
-.team-card:hover .view-bio{transform:translateY(0);}
-.team-card h3{margin-bottom:4px;}
+.team-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-md);
+  border-color:transparent;
+}
+.team-monogram{
+  width:64px;height:64px;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);
+  font-size:26px;
+  font-weight:600;
+  color:var(--petrol);
+  letter-spacing:0.04em;
+  line-height:1;
+  margin-bottom:24px;
+  font-variant-numeric:lining-nums;
+}
+.team-card:hover .team-monogram{background:var(--navy);color:var(--gold-light);border-color:var(--navy);}
+.team-card h3{margin-bottom:8px;font-size:22px;}
 .team-role{
   color:var(--gold);
-  font-size:13px;
+  font-size:12.5px;
   font-weight:700;
-  letter-spacing:0.06em;
+  letter-spacing:0.08em;
   text-transform:uppercase;
+  margin-bottom:12px;
 }
-
-/* Modal */
-.modal-overlay{
-  position:fixed;inset:0;
-  background:rgba(9,27,48,0.72);
-  backdrop-filter:blur(4px);
-  z-index:1300;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .35s ease;
+.team-oab{
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:600;
+  color:var(--text-soft);
+  letter-spacing:0.02em;
 }
-.modal-overlay.open{opacity:1;pointer-events:all;}
-.modal-box{
-  background:#fff;
-  max-width:560px;
-  width:100%;
-  padding:48px;
-  position:relative;
-  transform:translateY(24px);
-  transition:transform .4s var(--ease);
-  max-height:85vh;
-  overflow-y:auto;
-}
-.modal-overlay.open .modal-box{transform:translateY(0);}
-.modal-close{
-  position:absolute;
-  top:20px;right:20px;
-  width:36px;height:36px;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(14,42,71,0.2);
-  color:var(--navy);
-  transition:background .3s ease;
-}
-.modal-close:hover{background:var(--bg-soft);}
-.modal-close svg{width:16px;height:16px;}
-.modal-role{color:var(--gold);font-size:12.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
-.modal-box h3{font-size:30px;margin-bottom:18px;}
-.modal-box p{font-size:15px;}
-
-/* =========================================================
-   DEPOIMENTOS
-========================================================= */
-.testimonials{
-  padding:130px 0;
-  background:var(--bg-white);
-}
-.t-slider{
-  position:relative;
-  max-width:760px;
-  margin:0 auto;
-  overflow:hidden;
-}
-.t-track{
-  display:flex;
-  transition:transform .6s var(--ease);
-}
-.t-slide{
-  min-width:100%;
-  padding:0 8px;
-}
-.t-card{
-  background:var(--bg-soft);
-  border-left:2px solid var(--gold);
-  padding:46px 48px;
-  text-align:center;
-}
-.t-stars{color:var(--gold);font-size:16px;letter-spacing:3px;margin-bottom:22px;}
-.t-quote{
-  font-family:var(--serif);
-  font-size:22px;
-  font-style:italic;
-  color:var(--navy);
-  line-height:1.5;
-  margin-bottom:26px;
-}
-.t-name{font-weight:700;font-size:14.5px;color:var(--navy);}
-.t-city{color:var(--text-soft);font-size:13px;}
-.t-controls{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
-  margin-top:38px;
-}
-.t-arrow{
-  width:42px;height:42px;
-  border:1px solid rgba(14,42,71,0.2);
-  display:flex;align-items:center;justify-content:center;
-  transition:background .3s ease, border-color .3s ease;
-}
-.t-arrow:hover{background:var(--navy);border-color:var(--navy);color:#fff;}
-.t-arrow svg{width:16px;height:16px;}
-.t-dots{display:flex;gap:9px;}
-.t-dot{width:7px;height:7px;border-radius:50%;background:rgba(14,42,71,0.2);transition:background .3s ease, transform .3s ease;}
-.t-dot.active{background:var(--gold);transform:scale(1.3);}
 
 /* =========================================================
    FAQ
@@ -751,7 +672,7 @@ section{position:relative;}
 }
 .footer-grid{
   display:grid;
-  grid-template-columns:1.3fr 1fr 1fr 1.1fr;
+  grid-template-columns:1.5fr 1.2fr 1fr;
   gap:48px;
   padding-bottom:60px;
   border-bottom:1px solid rgba(255,255,255,0.08);
@@ -775,16 +696,6 @@ section{position:relative;}
   line-height:1.6;
 }
 .footer-col a:hover{color:var(--gold-light);}
-.footer-map{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  aspect-ratio:16/10;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:14px;
-}
-.footer-map svg{width:60%;height:60%;color:var(--gold);}
 .footer-social{display:flex;gap:12px;margin-top:6px;}
 .footer-social a{
   width:36px;height:36px;
@@ -838,6 +749,11 @@ section{position:relative;}
 /* =========================================================
    RESPONSIVE
 ========================================================= */
+@media (max-width: 1180px){
+  .main-nav{display:none;}
+  .hamburger{display:flex;}
+}
+
 @media (max-width: 980px){
   .hero-grid{grid-template-columns:1fr;}
   .hero-visual{order:-1;max-width:380px;margin:0 auto;}
@@ -849,18 +765,16 @@ section{position:relative;}
   .process-track{grid-template-columns:repeat(5,1fr);gap:4px;}
   .team-grid{grid-template-columns:repeat(3,1fr);gap:22px;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:40px;}
-  .main-nav{display:none;}
 }
 
 @media (max-width: 760px){
   .container{padding:0 22px;}
-  .hamburger{display:flex;}
   section{scroll-margin-top:80px;}
   .hero{padding-top:130px;padding-bottom:90px;min-height:auto;}
   .hero h1{font-size:34px;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   .hero-actions .btn{width:100%;}
-  .about,.areas,.diferenciais,.process,.team,.testimonials,.faq,.cta-final{padding:80px 0;}
+  .about,.areas,.diferenciais,.process,.team,.faq,.cta-final{padding:80px 0;}
   .areas-grid{grid-template-columns:1fr;}
   .dif-grid{grid-template-columns:1fr;}
   .process-track{grid-template-columns:1fr;gap:36px;}
@@ -868,15 +782,13 @@ section{position:relative;}
   .team-grid{grid-template-columns:1fr 1fr;gap:20px;}
   .footer-grid{grid-template-columns:1fr;gap:36px;}
   .footer-bottom{flex-direction:column;align-items:flex-start;}
-  .t-card{padding:34px 26px;}
-  .t-quote{font-size:19px;}
   .section-head{margin-bottom:40px;}
   .wa-float{width:54px;height:54px;bottom:18px;right:18px;}
 }
 
-@media (max-width: 460px){
-  .team-grid{grid-template-columns:1fr 1fr;}
-  .modal-box{padding:32px 24px;}
+@media (max-width: 520px){
+  .team-grid{grid-template-columns:1fr;max-width:360px;}
+  .team-card{padding:36px 28px;}
 }
 </style>
 </head>
@@ -888,16 +800,19 @@ section{position:relative;}
     <a href="#home" class="brand">Costa, Pereira <span>&</span> Scapin</a>
     <nav class="main-nav" aria-label="Navegação principal">
       <a href="#home">Home</a>
-      <a href="#escritorio">O Escritório</a>
+      <a href="#escritorio">Escritório</a>
       <a href="#areas">Áreas de Atuação</a>
-      <a href="#equipe">Equipe</a>
       <a href="#diferenciais">Diferenciais</a>
+      <a href="#equipe">Equipe</a>
       <a href="#faq">FAQ</a>
       <a href="#contato">Contato</a>
     </nav>
     <div class="header-actions">
+      <a href="https://www.instagram.com/cpsadvs/" target="_blank" rel="noopener" class="header-ig" aria-label="Instagram do escritório">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
       <a href="#" class="btn btn-gold btn-sm wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin." style="display:none" id="headerWaBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.8842.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.892c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.335 11.949-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         WhatsApp
       </a>
       <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
@@ -913,12 +828,13 @@ section{position:relative;}
 <!-- ============ MOBILE NAV ============ -->
 <nav class="mobile-nav" id="mobileNav" aria-label="Navegação móvel">
   <a href="#home">Home</a>
-  <a href="#escritorio">O Escritório</a>
+  <a href="#escritorio">Escritório</a>
   <a href="#areas">Áreas de Atuação</a>
-  <a href="#equipe">Equipe</a>
   <a href="#diferenciais">Diferenciais</a>
+  <a href="#equipe">Equipe</a>
   <a href="#faq">FAQ</a>
   <a href="#contato">Contato</a>
+  <a href="https://www.instagram.com/cpsadvs/" target="_blank" rel="noopener">Instagram</a>
   <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin.">Falar pelo WhatsApp</a>
 </nav>
 
@@ -928,10 +844,10 @@ section{position:relative;}
     <div class="hero-copy reveal">
       <span class="hero-eyebrow">Advocacia e Consultoria Jurídica</span>
       <h1>Assessoria jurídica com experiência, ética e atendimento personalizado.</h1>
-      <p class="lead">Atendimento jurídico para pessoas físicas e empresas, com soluções estratégicas, comunicação transparente e acompanhamento próximo em todas as etapas.</p>
+      <p class="lead">Atendimento jurídico 100% online para pessoas físicas e empresas em todo o Brasil, com soluções estratégicas, comunicação transparente e acompanhamento próximo em todas as etapas.</p>
       <div class="hero-actions">
         <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin.">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.8842.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.892c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.335 11.949-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
           Fale conosco pelo WhatsApp
         </a>
         <a href="#escritorio" class="btn btn-outline on-navy">Conheça o escritório</a>
@@ -941,24 +857,23 @@ section{position:relative;}
       <div class="frame">
         <div class="frame-inner">
           <div class="hero-art" id="heroArt">
-            <svg viewBox="0 0 200 240" fill="none" stroke="#C8A86A" stroke-width="1">
-              <line x1="20" y1="220" x2="180" y2="220"/>
-              <line x1="30" y1="220" x2="30" y2="90"/>
-              <line x1="60" y1="220" x2="60" y2="90"/>
-              <line x1="90" y1="220" x2="90" y2="90"/>
-              <line x1="110" y1="220" x2="110" y2="90"/>
-              <line x1="140" y1="220" x2="140" y2="90"/>
-              <line x1="170" y1="220" x2="170" y2="90"/>
-              <polygon points="20,90 180,90 100,25" stroke-width="1.1"/>
-              <line x1="15" y1="94" x2="185" y2="94" stroke-width="1.3"/>
-              <circle cx="100" cy="60" r="5" stroke-width="1"/>
+            <svg class="brand-emblem" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Costa, Pereira & Scapin — Advocacia e Consultoria Jurídica">
+              <!-- moldura interna sutil -->
+              <rect x="26" y="26" width="268" height="348" fill="none" stroke="#C8A86A" stroke-opacity="0.35" stroke-width="1"/>
+              <!-- nome do escritório -->
+              <text x="160" y="168" text-anchor="middle" fill="#DCC08F" font-family="'Cormorant Garamond', Georgia, serif" font-size="38" font-weight="600" letter-spacing="2">COSTA, PEREIRA</text>
+              <text x="160" y="212" text-anchor="middle" fill="#DCC08F" font-family="'Cormorant Garamond', Georgia, serif" font-size="38" font-weight="600" letter-spacing="2">&amp; SCAPIN</text>
+              <!-- filete divisor -->
+              <line x1="96" y1="240" x2="224" y2="240" stroke="#C8A86A" stroke-width="1"/>
+              <!-- subtítulo -->
+              <text x="160" y="266" text-anchor="middle" fill="#C8A86A" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" letter-spacing="1.5">Advocacia e Consultoria Jurídica</text>
             </svg>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="hero-scroll-cue"><span>Role a página</span><div class="scroll-line"></div></div>
+  <div class="hero-scroll-cue"><span>Conheça o site</span><div class="scroll-line"></div></div>
 </section>
 
 <!-- ============ SOBRE O ESCRITÓRIO ============ -->
@@ -1080,8 +995,8 @@ section{position:relative;}
       </div>
       <div class="dif-card">
         <div class="dif-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
-        <h3>Atendimento presencial e online</h3>
-        <p>Flexibilidade para reuniões presenciais ou por videochamada, conforme sua conveniência.</p>
+        <h3>Atendimento 100% online</h3>
+        <p>Você é atendido de onde estiver, por videochamada e WhatsApp, com a mesma proximidade e sem deslocamento — praticidade e alcance em todo o Brasil.</p>
       </div>
     </div>
   </div>
@@ -1097,7 +1012,7 @@ section{position:relative;}
     <div class="process-track reveal-stagger">
       <div class="process-step"><div class="step-num">1</div><h3>Contato</h3><p>Fale com a equipe pelo WhatsApp.</p></div>
       <div class="process-step"><div class="step-num">2</div><h3>Análise inicial</h3><p>Avaliamos os detalhes do seu caso.</p></div>
-      <div class="process-step"><div class="step-num">3</div><h3>Reunião</h3><p>Conversa presencial ou online.</p></div>
+      <div class="process-step"><div class="step-num">3</div><h3>Reunião</h3><p>Conversa por videochamada, no horário mais conveniente para você.</p></div>
       <div class="process-step"><div class="step-num">4</div><h3>Estratégia</h3><p>Definimos o melhor caminho jurídico.</p></div>
       <div class="process-step"><div class="step-num">5</div><h3>Acompanhamento</h3><p>Suporte contínuo em todas as etapas.</p></div>
     </div>
@@ -1113,85 +1028,27 @@ section{position:relative;}
     </div>
     <div class="team-grid reveal-stagger">
 
-      <button class="team-card" data-name="Dra. Marina Costa" data-role="Sócia Fundadora · Direito Empresarial e Civil"
-        data-bio="Fundadora do escritório, atua há mais de quinze anos em Direito Empresarial e Civil. Conduz cada caso com rigor técnico e atenção às particularidades de empresas de pequeno e médio porte, construindo relações de confiança de longo prazo com seus clientes.">
-        <div class="team-photo"><span class="team-initials">MC</span><span class="view-bio">Ver biografia</span></div>
-        <h3>Dra. Marina Costa</h3>
-        <span class="team-role">Sócia Fundadora</span>
-      </button>
-
-      <button class="team-card" data-name="Dr. Rafael Pereira" data-role="Sócio · Direito Trabalhista e Previdenciário"
-        data-bio="Especialista em Direito Trabalhista e Previdenciário, com atuação preventiva e contenciosa. Acredita que a clareza na comunicação é o que transforma um processo complexo em uma experiência tranquila para o cliente.">
-        <div class="team-photo"><span class="team-initials">RP</span><span class="view-bio">Ver biografia</span></div>
-        <h3>Dr. Rafael Pereira</h3>
-        <span class="team-role">Sócio</span>
-      </button>
-
-      <button class="team-card" data-name="Dra. Beatriz Scapin" data-role="Sócia · Direito de Família e Consumidor"
-        data-bio="Conduz questões de Direito de Família e do Consumidor com discrição e empatia. Sua atuação é reconhecida pela escuta cuidadosa e pela busca por soluções equilibradas, mesmo nos casos mais sensíveis.">
-        <div class="team-photo"><span class="team-initials">BS</span><span class="view-bio">Ver biografia</span></div>
-        <h3>Dra. Beatriz Scapin</h3>
-        <span class="team-role">Sócia</span>
-      </button>
-
-    </div>
-  </div>
-</section>
-
-<!-- Team bio modal -->
-<div class="modal-overlay" id="teamModal">
-  <div class="modal-box">
-    <button class="modal-close" id="modalClose" aria-label="Fechar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
-    </button>
-    <span class="modal-role" id="modalRole"></span>
-    <h3 id="modalName"></h3>
-    <p id="modalBio"></p>
-  </div>
-</div>
-
-<!-- ============ DEPOIMENTOS ============ -->
-<section class="testimonials" id="depoimentos">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Depoimentos</span>
-      <h2>A confiança de quem já foi atendido.</h2>
-    </div>
-    <div class="t-slider reveal">
-      <div class="t-track" id="tTrack">
-        <div class="t-slide">
-          <div class="t-card">
-            <div class="t-stars">★★★★★</div>
-            <p class="t-quote">"Fui muito bem orientado em cada etapa do processo. Profissionalismo e transparência do início ao fim."</p>
-            <div class="t-name">Eduardo M.</div>
-            <div class="t-city">Porto Alegre, RS</div>
-          </div>
-        </div>
-        <div class="t-slide">
-          <div class="t-card">
-            <div class="t-stars">★★★★★</div>
-            <p class="t-quote">"Equipe atenciosa e clara em todas as explicações. Me senti seguro durante todo o processo."</p>
-            <div class="t-name">Camila R.</div>
-            <div class="t-city">Santa Maria, RS</div>
-          </div>
-        </div>
-        <div class="t-slide">
-          <div class="t-card">
-            <div class="t-stars">★★★★★</div>
-            <p class="t-quote">"Atendimento diferenciado, sempre disponíveis para esclarecer dúvidas com paciência e clareza."</p>
-            <div class="t-name">João P.</div>
-            <div class="t-city">Caxias do Sul, RS</div>
-          </div>
-        </div>
+      <div class="team-card">
+        <div class="team-monogram">CC</div>
+        <h3>Caren Costa</h3>
+        <span class="team-role">Advogada</span>
+        <span class="team-oab">OAB/RS 134.851</span>
       </div>
-      <div class="t-controls">
-        <button class="t-arrow" id="tPrev" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <div class="t-dots" id="tDots"></div>
-        <button class="t-arrow" id="tNext" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+
+      <div class="team-card">
+        <div class="team-monogram">WP</div>
+        <h3>Wilson Pereira</h3>
+        <span class="team-role">Advogado</span>
+        <span class="team-oab">OAB/RS 134.764</span>
       </div>
-    </div>
-    <div class="whatsapp-inline reveal">
-      <a href="#" class="btn btn-outline wa-link" data-msg="Olá! Vi os depoimentos no site e gostaria de conversar.">Falar pelo WhatsApp</a>
+
+      <div class="team-card">
+        <div class="team-monogram">NS</div>
+        <h3>Neide Scapin</h3>
+        <span class="team-role">Previdenciarista</span>
+        <span class="team-oab">Especialista em Direito Previdenciário</span>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1210,8 +1067,8 @@ section{position:relative;}
         <div class="faq-a"><p>Basta entrar em contato pelo WhatsApp ou preencher o formulário de contato. Nossa equipe retornará para agendar um horário conforme sua disponibilidade.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q"><span>O atendimento pode ser online?</span><span class="plus"></span></button>
-        <div class="faq-a"><p>Sim. Realizamos atendimentos presenciais e por videochamada, conforme a preferência e a necessidade de cada cliente.</p></div>
+        <button class="faq-q"><span>Como funciona o atendimento online?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Todo o atendimento é feito de forma remota, por videochamada e WhatsApp. Você conversa com a equipe e acompanha seu caso de onde estiver, sem precisar se deslocar, com o mesmo cuidado de um atendimento próximo.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Quais documentos preciso apresentar?</span><span class="plus"></span></button>
@@ -1239,7 +1096,7 @@ section{position:relative;}
     <h2>Precisa de orientação jurídica?</h2>
     <p>Entre em contato e converse diretamente com nossa equipe.</p>
     <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Preciso de orientação jurídica e gostaria de falar com a equipe.">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.8842.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.892c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.335 11.949-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       Falar pelo WhatsApp
     </a>
   </div>
@@ -1251,31 +1108,24 @@ section{position:relative;}
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-brand">Costa, Pereira <span>&</span> Scapin</div>
-        <p>Advocacia e Consultoria Jurídica, com atendimento ético, transparente e personalizado para pessoas físicas e empresas.</p>
+        <p>Advocacia e Consultoria Jurídica, com atendimento ético, transparente e personalizado para pessoas físicas e empresas. Atendimento remoto em todo o Brasil.</p>
         <div class="footer-social">
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="11" x2="8" y2="17"/><line x1="8" y1="7.5" x2="8" y2="7.51"/><path d="M12 17v-3.5a2.5 2.5 0 0 1 5 0V17"/></svg></a>
+          <a href="https://www.instagram.com/cpsadvs/" target="_blank" rel="noopener" aria-label="Instagram do escritório"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Contato</h4>
-        <p>Rua Exemplo, 123 – Centro<br>Sua Cidade – UF</p>
-        <a href="#" class="wa-link" data-msg="Olá! Encontrei o número pelo site.">(00) 00000-0000</a>
-        <a href="mailto:contato@costapereirascapin.adv.br">contato@costapereirascapin.adv.br</a>
+        <a href="#" class="wa-link" data-msg="Olá! Encontrei o número pelo site.">WhatsApp: (55) 99154-0761</a>
+        <a href="mailto:ncwadvogadosassociados@gmail.com">ncwadvogadosassociados@gmail.com</a>
+        <a href="https://www.instagram.com/cpsadvs/" target="_blank" rel="noopener">@cpsadvs</a>
       </div>
       <div class="footer-col">
         <h4>Links Rápidos</h4>
-        <a href="#escritorio">O Escritório</a>
+        <a href="#escritorio">Escritório</a>
         <a href="#areas">Áreas de Atuação</a>
+        <a href="#diferenciais">Diferenciais</a>
         <a href="#equipe">Equipe</a>
         <a href="#faq">FAQ</a>
-      </div>
-      <div class="footer-col">
-        <h4>Localização</h4>
-        <div class="footer-map">
-          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M50 12c-13 0-23 10-23 23 0 17 23 40 23 40s23-23 23-40c0-13-10-23-23-23Z"/><circle cx="50" cy="35" r="8"/></svg>
-        </div>
-        <p style="font-size:12.5px;">OAB/RS 000.000</p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1290,14 +1140,14 @@ section{position:relative;}
 
 <!-- ============ WHATSAPP FLOAT ============ -->
 <a href="#" class="wa-float wa-link" data-msg="Olá! Gostaria de falar com a equipe da Costa, Pereira & Scapin." aria-label="Falar no WhatsApp">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.7 2.3 4.7 5 5l1-1.6-2.2-1-1 1.2c-1.2-.6-2-1.4-2.6-2.6l1.2-1L8.9 7.9 7.3 8.9Z"/></svg>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.8842.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.892c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 0 0 5.71 1.447h.006c6.585 0 11.946-5.335 11.949-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
 </a>
 
 <script>
 (function(){
   // ---------- CONFIG ----------
-  // Substitua pelo número real do escritório no formato DDI+DDD+numero, apenas dígitos.
-  var WHATSAPP_NUMBER = "5500000000000";
+  // Número do escritório no formato DDI+DDD+numero, apenas dígitos.
+  var WHATSAPP_NUMBER = "5555991540761";
 
   // ---------- WhatsApp links ----------
   document.querySelectorAll(".wa-link").forEach(function(link){
@@ -1379,50 +1229,6 @@ section{position:relative;}
       }
     });
   });
-
-  // ---------- Team modal ----------
-  var modal = document.getElementById("teamModal");
-  var modalName = document.getElementById("modalName");
-  var modalRole = document.getElementById("modalRole");
-  var modalBio = document.getElementById("modalBio");
-  document.querySelectorAll(".team-card").forEach(function(card){
-    card.addEventListener("click", function(){
-      modalName.textContent = card.getAttribute("data-name");
-      modalRole.textContent = card.getAttribute("data-role");
-      modalBio.textContent = card.getAttribute("data-bio");
-      modal.classList.add("open");
-      document.body.style.overflow = "hidden";
-    });
-  });
-  function closeModal(){
-    modal.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-  document.getElementById("modalClose").addEventListener("click", closeModal);
-  modal.addEventListener("click", function(e){ if(e.target === modal) closeModal(); });
-  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeModal(); });
-
-  // ---------- Testimonials slider ----------
-  var track = document.getElementById("tTrack");
-  var slides = track.children;
-  var dotsWrap = document.getElementById("tDots");
-  var current = 0;
-  for(var i=0;i<slides.length;i++){
-    var dot = document.createElement("div");
-    dot.className = "t-dot" + (i===0 ? " active" : "");
-    (function(idx){ dot.addEventListener("click", function(){ goTo(idx); }); })(i);
-    dotsWrap.appendChild(dot);
-  }
-  var dots = dotsWrap.children;
-  function goTo(idx){
-    current = (idx + slides.length) % slides.length;
-    track.style.transform = "translateX(-" + (current*100) + "%)";
-    for(var d=0; d<dots.length; d++){ dots[d].classList.toggle("active", d===current); }
-  }
-  document.getElementById("tPrev").addEventListener("click", function(){ goTo(current-1); });
-  document.getElementById("tNext").addEventListener("click", function(){ goTo(current+1); });
-  var autoSlide = setInterval(function(){ goTo(current+1); }, 6500);
-  document.querySelector(".t-slider").addEventListener("mouseenter", function(){ clearInterval(autoSlide); });
 
 })();
 </script>
