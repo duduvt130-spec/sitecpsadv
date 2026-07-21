@@ -58,8 +58,23 @@ O cliente e usuários finais podem usar aparelhos antigos (ex.: **iPhone 7 / Saf
 
 A publicidade de advogados no Brasil é restritiva (Provimento 205/2021 da OAB). Evitar promessas de resultado e ter cautela com depoimentos. Se for reintroduzir depoimentos, usar avaliações reais e verificáveis e revisar com os advogados.
 
+## Arquivos do repositório
+
+Além do `index.html`, o repositório tem apenas assets de identidade (gerados, não são conteúdo da página):
+
+- `favicon.ico` (64px), `icon-512.png`, `apple-touch-icon.png` — monograma **CPS** em dourado sobre navy, com borda dourada.
+- `og-image.png` (1200×630) — card de preview do link (WhatsApp, redes sociais): molduras de canto douradas, nome do escritório em serifada, "Atendimento 100% online em todo o Brasil".
+
+Foram gerados por script (`System.Drawing`, PowerShell) a partir dos tokens de cor do site. Para regerar/ajustar, é só recriar o script — não há arquivo-fonte de design.
+
+## SEO e compartilhamento
+
+O `<head>` traz `canonical`, `robots`, `theme-color`, Open Graph completo, Twitter Card e um bloco **JSON-LD `LegalService`** (contato, áreas, Instagram, equipe com OAB).
+
+⚠️ **Pendência conhecida:** não há cidade no SEO, porque o atendimento é 100% online e o cliente não informou base física. Se ele quiser aparecer em buscas locais (ex.: "advogado em <cidade>"), é preciso definir a cidade e acrescentar em `title`, `description` e no JSON-LD (`areaServed`).
+
 ## Notas técnicas
 
-- Arquivo único `index.html`, sem dependências além das fontes do Google.
+- Um único arquivo de página, `index.html`, sem dependências além das fontes do Google.
 - JS embutido cuida de: montagem dos links do WhatsApp (a partir de `WHATSAPP_NUMBER`), estado "scrolled" do cabeçalho, menu mobile, parallax sutil do hero, reveal on scroll e acordeão do FAQ.
 - Deploy: Vercel.
