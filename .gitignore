@@ -1,0 +1,8 @@
+# Materiais de curso, apostilas e PDFs não fazem parte do site.
+# Este repositório é público e alimenta o deploy na Vercel.
+*.pdf
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
